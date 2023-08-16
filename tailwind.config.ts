@@ -52,12 +52,17 @@ const config: Config = {
         900: '#6a3252',
       },
 
-      blueberry: '#07061D',
+      blueberry: {
+        300: '#323842',
+        600: '#151A2A',
+        900: '#07061D'
+      },
       background: '#030712',
       pistachio: '#D3FFCC',
       cream: '#E2DFCD',
       foam: '#D7DAE2',
-      snow: '#FFFFFF'
+      snow: '#FFFFFF',
+      transparent: 'transparent'
     }
   },
   plugins: [],
