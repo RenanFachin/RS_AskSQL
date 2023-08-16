@@ -29,9 +29,14 @@ export default function Home() {
     body: {
       schema
     },
+
   })
 
   const result = completion
+
+  function handleCleanPromptInputs() {
+    setSchema('')
+  }
 
 
   // console.log(result)
@@ -42,8 +47,11 @@ export default function Home() {
       <header className='flex items-center justify-between'>
         <Image src={logoImage} width={118} height={27} alt='' />
 
-        <button type='button'>
-          <Trash2 className='h-8 w-8 text-snow' strokeWidth={0.6} />
+        <button type='button' onClick={handleCleanPromptInputs}>
+          <Trash2
+            className='h-8 w-8 text-snow hover:text-gum-600'
+            strokeWidth={0.6}
+          />
         </button>
       </header>
 
@@ -89,9 +97,9 @@ export default function Home() {
 
         <button
           type="submit"
-          className='text-pistachio flex items-center justify-center rounded-xl border border-pistachio h-14 gap-3'
+          className='text-pistachio flex items-center justify-center rounded-xl border border-pistachio h-14 gap-3 hover:bg-blueberry-600 hover:text-snow hover:border-snow'
         >
-          <Stars className='w-6 h-6 ' />
+          <Stars className='w-6 h-6' />
           Perguntar à inteligência artificial
         </button>
       </form>

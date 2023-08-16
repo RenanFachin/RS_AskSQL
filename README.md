@@ -1,6 +1,15 @@
+<p align="center">
+  <img src="./public/logo.svg" alt="Logo do Projeto">
+</p>
+
 # App de Tradução de Códigos SQL
 
 O App de Tradução de Códigos SQL é uma aplicação inovadora que simplifica a tradução de esquemas de criação de tabelas SQL em consultas legíveis por humanos. Combinando tecnologias de ponta, como processamento de linguagem natural e frameworks web modernos, essa aplicação proporciona uma maneira intuitiva e eficiente de interagir com bancos de dados por meio de perguntas.
+
+<p align="center">
+  <img src="./public/projectExample.JPG" alt="Exemplo da Aplicação">
+</p>
+
 
 ## Tabela de Conteúdos
 
