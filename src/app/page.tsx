@@ -11,13 +11,30 @@ import { highlight, languages } from 'prismjs';
 import 'prismjs/components/prism-sql';
 import 'prismjs/themes/prism-funky.css'; //Example style, you can use another
 
+// AI
+import { useCompletion } from 'ai/react'
+
 
 export default function Home() {
-  // funções do tipo useState são client side, precisa adicionar 'use client' ou criar um componente
-  const [code, setCode] = useState('')
-  const [question, setQuestion] = useState('')
 
-  const [result, setResult] = useState('')
+  // funções do tipo useState são client side, precisa adicionar 'use client' ou criar um componente
+  const [schema, setSchema] = useState('')
+
+
+  // AI
+  // o usechat funciona como um chat, vai e volta respostas
+  // o useCompletion funciona para receber uma resposta para um prompt
+  const { completion, handleSubmit, input, handleInputChange } = useCompletion({
+    api: '/api/generate-sql',
+    body: {
+      schema
+    },
+  })
+
+  const result = completion
+
+
+  // console.log(result)
 
   return (
     <div className='max-w-[430px] mx-auto px-4 pt-12 pb-4'>
@@ -31,7 +48,10 @@ export default function Home() {
       </header>
 
       {/* Pergunta para ai */}
-      <form className='py-8 w-full flex flex-col text-foam'>
+      <form
+        onSubmit={handleSubmit}
+        className='py-8 w-full flex flex-col text-foam'
+      >
         <label
           htmlFor="schema"
           className='text-lg font-light'
@@ -41,9 +61,9 @@ export default function Home() {
 
         <Editor
           textareaId='schema'
-          value={code}
-          onValueChange={code => setCode(code)}
-          highlight={code => highlight(code, languages.sql, 'sql')}
+          value={schema}
+          onValueChange={schema => setSchema(schema)}
+          highlight={schema => highlight(schema, languages.sql, 'sql')}
           // Não estava aceitando o padding no className com tailwindcss
           padding={16}
           textareaClassName='outline-none'
@@ -62,8 +82,8 @@ export default function Home() {
           className='my-4 bg-blueberry-600 border border-blueberry-300 rounded-md px-4 py-3 outline-none focus:ring-2 focus:ring-pistachio'
           name="question"
           id="question"
-          value={question}
-          onChange={e => setQuestion(e.target.value)}
+          value={input}
+          onChange={handleInputChange}
         />
 
 
@@ -84,7 +104,7 @@ export default function Home() {
           textareaId='schema'
           readOnly
           value={result}
-          onValueChange={() => {}} // Como é um parâmetro obrigatório, estamos deixando uma função sem "nada"
+          onValueChange={() => { }} // Como é um parâmetro obrigatório, estamos deixando uma função sem "nada"
           highlight={code => highlight(code, languages.sql, 'sql')}
           // Não estava aceitando o padding no className com tailwindcss
           padding={16}
